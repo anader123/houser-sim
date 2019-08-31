@@ -1,0 +1,10 @@
+.wizard-container {
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+}
+
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

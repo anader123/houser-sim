@@ -1,0 +1,11 @@
+.header-container {
+    width: 100vw;
+    background-color: #509872; 
+    display: flex; 
+    align-items: center;
+    padding-left: 450px;
+}
+
+.house-logo {
+    margin-right: 15px;
+}

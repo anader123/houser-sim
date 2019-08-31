@@ -1,0 +1,15 @@
+.dashboard-container {
+    background: rgb(51, 87, 67);
+    min-height: 100vh;
+    width: 55vw;
+}
+
+.dashboard-title {
+    font-size: 50px;
+}
+
+.button-span {
+    background: white;
+    border-radius: 4px; 
+    padding: 3px;
+  }

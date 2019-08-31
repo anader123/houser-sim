@@ -1,0 +1,21 @@
+.house-container {
+    border-radius: 7px;
+    padding: 20px;
+    width: 80%;
+    margin-top: 30px;
+    background: rgb(39, 38, 38);
+    display: flex;
+    justify-content: space-around;
+}
+
+.house-image {
+    height: 150px;
+    width: 200px;
+}
+
+.address-container {
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
