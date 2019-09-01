@@ -3,11 +3,12 @@ import './House.css';
 
 export default class House extends Component {
     render() {
-        const { house } = this.props
+        const { house } = this.props;
+        const { id } = this.props.house
         return (
             <div className='house-container'>
                 <br/>
-                <img className='house-image' src={`${house.img}`} />
+                <img className='house-image' alt='house' src={`${house.img}`} />
                 <div className='address-container'>
                     <div>Property Name: {house.name}</div>
                     <div>Address: {house.address}</div>
@@ -20,7 +21,7 @@ export default class House extends Component {
                     <div>Desired Rent {house.rent}</div>
                 </div>
                 <div className='delete-container'>
-                    <span>X</span>  
+                    <span onClick={() => this.props.deleteHouse(id)}>X</span>  
                 </div>
             </div>
         )

@@ -11,11 +11,11 @@ export default class Dashboard extends Component {
         this.state = {
             houses: []
         }
-    }
+    };
 
     componentDidMount() {
         this.getHouses(); 
-    }
+    };
 
     getHouses = () =>  {
         axios.get('/api/houses')
@@ -27,14 +27,24 @@ export default class Dashboard extends Component {
         .catch(err => {
             console.log(err)
         })
-    }
+    };
+
+    deleteHouse = (id) => {
+        axios.delete(`/api/houses/${id}`)
+            .then(() => {
+                this.getHouses(); 
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    };
 
     
     render() {
         const {houses} = this.state; 
         const mappedHouses = houses.map((house, index) => {
             return(
-                <House key={index} house={house} />
+                <House key={index} house={house} deleteHouse={this.deleteHouse} />
             )
         })
         return (
@@ -46,5 +56,5 @@ export default class Dashboard extends Component {
                 {mappedHouses}
             </div>
         )
-    }
-}
+    };
+};

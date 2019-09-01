@@ -12,7 +12,8 @@ export default class Wizard3 extends Component {
 
         this.state = {
             mortgage: reduxState.mortgage,
-            rent: reduxState.rent
+            rent: reduxState.rent, 
+            redux: reduxState
         }
     };
 
@@ -31,25 +32,39 @@ export default class Wizard3 extends Component {
             [event.target.name]: event.target.value
         })
     }; 
-
-    // FIXME: 
-    // Not sure how to import the action so that it can be called. 
-    // createHouse = () => {
-    //     axios.post('/api/house', {...store.get()}
-    //         .then(() => {
-
-    //         }) 
-    // }
+    
+    clearInputs = () => {
+        store.dispatch({type: 'CANCEL'})
+    };
+    
+    createHouse = () => {
+        const { redux, rent, mortgage } = this.state; 
+        const fullState = {...redux, rent, mortgage}
+        axios.post('/api/house', fullState)
+            .then(() => {
+                this.clearInputs(); 
+            }) 
+            .catch(err => {
+                console.log(err)
+            })
+        setTimeout(() => {
+            this.props.history.push('/')
+        }, 150)
+    };
 
     render() {
         return (
             <div className='wizard-container'>
-                <div>Wizard 3</div>
-                <Link to='/'><span className='button-span'>Cancel</span></Link>
+
+                <Link to='/'><span className='button-span'onClick={() => store.dispatch({type:'CANCEL'})}>Cancel</span></Link>
+
                 <input placeholder='monthly mortgage amount' name='mortgage' onChange={this.handleInputChange} value={this.state.mortgage}/>
+
                 <input placeholder='desired monthly rent' name='rent' onChange={this.handleInputChange} value={this.state.rent}/>
+
                 <Link to='/wizard/step2'><span onClick={() => store.dispatch({type: 'ADD_STEP3', payload:{componentState: this.state}})} className='button-span'>Previous Step</span></Link>
-                <span>Complete</span>    
+
+                <span className='button-span' onClick={this.createHouse}>Complete</span>
             </div>
         )
     }

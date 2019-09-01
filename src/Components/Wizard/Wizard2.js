@@ -34,7 +34,7 @@ export default class Wizard2 extends Component {
         return (
             <div className='wizard-container'>
                 <div>Wizard 2</div>
-                <Link to='/'><span className='button-span'>Cancel</span></Link>
+                <Link to='/'><span className='button-span' onClick={() => store.dispatch({type:'CANCEL'})}>Cancel</span></Link>
                 <input placeholder='image url' name='img' onChange={this.handleInputChange} value={this.state.img}/>
                 <Link to='/wizard/step1'><span onClick={() => store.dispatch({type: 'ADD_STEP2', payload:{componentState: this.state}})} className='button-span'>Previous Step</span></Link>
                 <Link to='/wizard/step3'><span onClick={() => store.dispatch({type: 'ADD_STEP2', payload:{componentState: this.state}})} className='button-span'>Next Step</span></Link>

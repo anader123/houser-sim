@@ -9,8 +9,6 @@ const getHouses = (req, res) => {
         })
 };
 
-// FIXME: 
-// Having issues getting the data to get added to the db. Keeps throwing catch
 const createHouse = (req, res) => {
     const db = req.app.get('db');
     const { name, address, city, state, zipcode, img, mortgage, rent } = req.body
@@ -24,8 +22,8 @@ const createHouse = (req, res) => {
 };
 
 const deleteHouse = (req, res) => {
-    const { id } = req.params; 
-    const db = req.app.get('db'); 
+    const db = req.app.get('db');
+    const { id } = req.params;  
     db.delete_house([id])
         .then(() => {
             res.status(200).send(`House number ${id} has been deleted.`)
